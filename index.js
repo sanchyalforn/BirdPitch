@@ -10,8 +10,12 @@ app.use(express.static(__dirname + '/static'));
 
 
 app.get('/', function (req, res) {
-    res.render('play', {});
+    res.render('welcome', {});
 });
+
+app.get('/play', function (req, res) {
+    res.render('play', {});
+})
 
 app.listen(port, function () {
      console.log("Equisde running on port " + port);
