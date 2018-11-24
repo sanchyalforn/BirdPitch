@@ -249,7 +249,7 @@ function updatePitch( time ) {
 	// TODO: Paint confidence meter on canvasElem here.
 
  	if (ac == -1) {
-         io.sockets.emit("pitch",-1);
+         io.sockets.emit("pitch",0);
 	 	
  	} else {
 	 	detectorElem.className = "confident";
