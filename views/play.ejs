@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>BetYourDignity</title>
+    <style>
+        body {
+            background: #000000;
+            padding: 0px;
+            margin: 0px;
+        }
+        canvas {
+            display: block;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="phaser-example"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        window.onload = function () {
+            window.focus()
+            resize();
+            window.addEventListener("resize", resize, false);
+        }
+        var config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            resolution: 2,
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    // debug: true,
+                    gravity: { y: 600 }
+                },
+            },
+            audio: {
+                // disableWebAudio: true
+            },
+            backgroundColor: '#2d2d2d',
+            scene: {
+                preload: preload,
+                create: create,
+                update: update,
+            }
+        };
+
+        var game = new Phaser.Game(config);
+        
+        function preload() {
+
+            this.load.image('redbull', 'static/assets/sprites/redbull.png');
+
+        }
+        
+        function create() {
+
+            var block = this.add.image(0, 0, 'block');
+            //Phaser.Display.Align.In.Center(pic, this.add.zone(400, 300, 800, 600));
+        
+        }
+
+        function update(time) {
+            
+        }
+        
+        
+        function resize() {
+            var canvas = document.querySelector("canvas");
+            var windowWidth = window.innerWidth;
+            var windowHeight = window.innerHeight;
+            var windowRatio = windowWidth / windowHeight;
+            var gameRatio = game.config.width / game.config.height;
+            if (windowRatio < gameRatio) {
+                canvas.style.width = windowWidth + "px";
+                canvas.style.height = (windowWidth / gameRatio) + "px";
+            }
+            else {
+                canvas.style.width = (windowHeight * gameRatio) + "px";
+                canvas.style.height = windowHeight + "px";
+            }
+        }
+    </script>
+</body>
