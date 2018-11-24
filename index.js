@@ -7,7 +7,7 @@ var io   = require('socket.io')(http)
 
 
 var io = require('socket.io');
-
+/*
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 var audioContext = null;
@@ -260,7 +260,7 @@ function updatePitch( time ) {
 	if (!window.requestAnimationFrame)
 		window.requestAnimationFrame = window.webkitRequestAnimationFrame;
 	rafID = window.requestAnimationFrame( updatePitch );
-}
+}*/
 
 app.set('view engine', 'ejs');
 
