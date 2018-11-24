@@ -1,116 +1,118 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>Equisde</title>
-    <style>
-        body {
-            background: #000000;
-            padding: 0px;
-            margin: 0px;
-        }
-        canvas {
-            display: block;
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-    </style>
+   <meta charset=“utf-8”>
+   <title>Equisde</title>
+   <style>
+       body {
+           background: #000000;
+           padding: 0px;
+           margin: 0px;
+       }
+       canvas {
+           display: block;
+           margin: 0;
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+       }
+   </style>
 </head>
 
 <body>
-    <div id="phaser-example"></div>
+   <div id=“phaser-example”></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        window.onload = function () {
-            window.focus()
-            resize();
-            window.addEventListener("resize", resize, false);
-        }
-        var config = {
-            type: Phaser.AUTO,
-            width: 800,
-            height: 600,
-            resolution: 2,
-            physics: {
-                default: 'arcade',
-                arcade: {
-                    // debug: true,
-                    gravity: { y: 0 }
-                },
-            },
-            audio: {
-                // disableWebAudio: true
-            },
-            backgroundColor: '#2d2d2d',
-            scene: {
-                preload: preload,
-                create: create,
-                update: update,
-            }
-        };
+   <script src=“https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser.min.js“></script>
+   <script src=“/socket.io/socket.io.js”></script>
+   <script>
+       window.onload = function () {
+           window.focus()
+           resize();
+           window.addEventListener(“resize”, resize, false);
+       }
+       var config = {
+           type: Phaser.AUTO,
+           width: 800,
+           height: 600,
+           resolution: 2,
+           physics: {
+               default: ‘arcade’,
+               arcade: {
+                   // debug: true,
+                   gravity: { y: 0 }
+               },
+           },
+           audio: {
+               // disableWebAudio: true
+           },
+           backgroundColor: ‘#2d2d2d’,
+           scene: {
+               preload: preload,
+               create: create,
+               update: update,
+           }
+       };
 
-        var game = new Phaser.Game(config);
-        
-        function preload() {
-            this.load.image('pajarito', 'static/assets/pajaritoxd.png');
-            this.load.image('back', 'static/assets/back.png');
-        }
-        
-        function create() {
-            // Add background 
-            this.add.image(400, 300, 'back');
-            //player = this.physics.add.sprite(100, 450, 'pajarito').setScale(0.15, 0.15);;
-            //player.setCollideWorldBounds(true);
-            cursors = this.input.keyboard.createCursorKeys();
+       var game = new Phaser.Game(config);
 
-            group = this.physics.add.group({
-                bounceX: true,
-                bounceY: false,
-                collideWorldBounds: true,
-                collide: true,
-            });
+       function preload() {
+           this.load.image(‘pajarito’, ‘static/assets/pajaritoxd.png’);
+           this.load.image(‘back’, ‘static/assets/back.png’);
+       }
 
-            player = group.create(200, 200, 'pajarito').setScale(0.15);
+       function create() {
+           // Add background
+           this.add.image(400, 300, ‘back’);
 
+           cursors = this.input.keyboard.createCursorKeys();
 
-        }
+           group = this.physics.add.group({
+               bounceX: true,
+               bounceY: false,
+               collideWorldBounds: true,
+               collide: true,
+           });
 
-        function update() {
-            if (cursors.left.isDown) {
-                player.setVelocityX(-200);
-            } else if (cursors.right.isDown) {
-                player.setVelocityX(200);
-            } else if (cursors.up.isDown) {
-                player.setVelocityY(-200);
-            } else if (cursors.down.isDown){
-                player.setVelocityY(200);
-            }
-            else {
-                player.setVelocityX(0);
-                player.setVelocityY(0);
-            }
+           player = group.create(50, 300, ‘pajarito’).setScale(0.15);
 
-        }
+       }
 
-        function resize() {
-            var canvas = document.querySelector("canvas");
-            var windowWidth = window.innerWidth;
-            var windowHeight = window.innerHeight;
-            var windowRatio = windowWidth / windowHeight;
-            var gameRatio = game.config.width / game.config.height;
-            if (windowRatio < gameRatio) {
-                canvas.style.width = windowWidth + "px";
-                canvas.style.height = (windowWidth / gameRatio) + "px";
-            }
-            else {
-                canvas.style.width = (windowHeight * gameRatio) + "px";
-                canvas.style.height = windowHeight + "px";
-            }
-        }
-    </script>
+       function update() {
+
+           if (cursors.left.isDown) {
+               player.setVelocityX(-200);
+           } else if (cursors.right.isDown) {
+               player.setVelocityX(200);
+           } else if (cursors.up.isDown) {
+               player.setVelocityY(-200);
+           } else if (cursors.down.isDown){
+               player.setVelocityY(200);
+           }
+           else {
+               player.setVelocityY(0);
+           }
+
+           player.setVelocityX(200);
+
+       }
+
+       function resize() {
+           var canvas = document.querySelector(“canvas”);
+           var windowWidth = window.innerWidth;
+           var windowHeight = window.innerHeight;
+           var windowRatio = windowWidth / windowHeight;
+           var gameRatio = game.config.width / game.config.height;
+           if (windowRatio < gameRatio) {
+               canvas.style.width = windowWidth + “px”;
+               canvas.style.height = (windowWidth / gameRatio) + “px”;
+           }
+           else {
+               canvas.style.width = (windowHeight * gameRatio) + “px”;
+               canvas.style.height = windowHeight + “px”;
+           }
+       }
+   </script>
 </body>
+
+</html>

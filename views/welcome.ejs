@@ -2,16 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CN ROBOTICS CORP.</title>
+    <title>Equisde</title>
 
-    <link rel="stylesheet" href="welcome.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .button-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn {
+            display: block;
+            height: 50px;
+            width: 186px;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: white;
+            font-size: 14px;
+            text-align: center; 
+        }
+    </style>
 
 </head>
-<body>
+<body background="../static/welcome-image.jpg">
 
-    <div class="contingut">
-        <h3>Romeo Project</h3>
+    <h1>
+        Welcome to XD
+    </h1>
+
+    <div class="button-container">
+        <a href="#" class="btn"><span>Play!</span></a>
     </div>
-
 </body>
 </html>
