@@ -22,9 +22,9 @@
 
 <body>
     <div id="phaser-example"></div>
-    <script language="javascript" type="text/javascript" src="path/to/p5.sound.js"></script>
+   <!-- <script language="javascript" type="text/javascript" src="path/to/p5.sound.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
+    <!--<script src="/socket.io/socket.io.js"></script> -->
     <script>
         
 
@@ -98,12 +98,26 @@
             help.setScrollFactor(0);
         }
 
-        function update (time, delta)
-        {
-<<<<<<< HEAD
+        function update (PrevFreq, Freq) {
+
+            points = points + 1
+            
+            points += 10;
+            scoreText.setText('Score: ' + points);
+
+            console.log(Freq)
+            var accel = player.body.standing ? player.body.accelGround : player.body.accelAir;
+
+            var pitch = Math.round(Freq);
+                if (pitch < prevPitch)
+                    player.setVelocityY(250)
+                else 
+                    player.setVelocityY(-250)
+        }
+        /*
+        function update (time, delta) {
             
             player.setVelocityX(50);
-=======
 
             points = points + 1
             
@@ -115,20 +129,19 @@
 
             if (cursors.up.isDown)
             {
-                player.setVelocityY(-200);
+                player.setVelocityY(-250);
             }
             else if (cursors.down.isDown)
             {
-                player.setVelocityY(200);
+                player.setVelocityY(250);
             }
             else{
                 player.setVelocityY(0);
             }
 
             player.setVelocityX(200);
->>>>>>> 37d85e358aabfe55f76e7c8082e0011b49a05bfe
         }
-
+*/
 
         function resize() {
             var canvas = document.querySelector("canvas");
@@ -147,7 +160,11 @@
         }
 
 
-        /************************************/
+        /************************************
+         ************************************
+         ************************************/
+
+        var prevPitch = 120;
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
         var audioContext = null;
@@ -206,7 +223,7 @@
             updatePitch();
         }
 
-        function toggleLiveInput() {
+        //function toggleLiveInput() {
             getUserMedia(
             {
                 "audio": {
@@ -219,7 +236,7 @@
                     "optional": []
                 },
             }, gotStream);
-        }
+        //}
 
         function togglePlayback() {
             
@@ -244,7 +261,7 @@
         var buflen = 1024;
         var buf = new Float32Array( buflen );
 
-        var noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+//        var noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 
         function noteFromPitch( frequency ) {
             var noteNum = 12 * (Math.log( frequency / 440 )/Math.log(2) );
@@ -323,59 +340,18 @@
             var ac = autoCorrelate( buf, audioContext.sampleRate );
             // TODO: Paint confidence meter on canvasElem here.
 
-            if (DEBUGCANVAS) {  // This draws the current waveform, useful for debugging
-                waveCanvas.clearRect(0,0,512,256);
-                waveCanvas.strokeStyle = "red";
-                waveCanvas.beginPath();
-                waveCanvas.moveTo(0,0);
-                waveCanvas.lineTo(0,256);
-                waveCanvas.moveTo(128,0);
-                waveCanvas.lineTo(128,256);
-                waveCanvas.moveTo(256,0);
-                waveCanvas.lineTo(256,256);
-                waveCanvas.moveTo(384,0);
-                waveCanvas.lineTo(384,256);
-                waveCanvas.moveTo(512,0);
-                waveCanvas.lineTo(512,256);
-                waveCanvas.stroke();
-                waveCanvas.strokeStyle = "black";
-                waveCanvas.beginPath();
-                waveCanvas.moveTo(0,buf[0]);
-                for (var i=1;i<512;i++) {
-                    waveCanvas.lineTo(i,128+(buf[i]*128));
-                }
-                waveCanvas.stroke();
-            }
-
             if (ac == -1) {
-                detectorElem.className = "vague";
-                pitchElem.innerText = "--";
-                noteElem.innerText = "-";
-                detuneElem.className = "";
-                detuneAmount.innerText = "--";
+                player.setVelocityY(0)
+                player.setVelocityX(0)
             } else {
-                detectorElem.className = "confident";
-                pitch = ac;
-                pitchElem.innerText = Math.round( pitch ) ;
-                var note =  noteFromPitch( pitch );
-                noteElem.innerHTML = noteStrings[note%12];
-                var detune = centsOffFromPitch( pitch, note );
-                if (detune == 0 ) {
-                    detuneElem.className = "";
-                    detuneAmount.innerHTML = "--";
-                } else {
-                    if (detune < 0)
-                        detuneElem.className = "flat";
-                    else
-                        detuneElem.className = "sharp";
-                    detuneAmount.innerHTML = Math.abs( detune );
-                }
+                player.setVelocityX(200)
+                update(prevPitch,ac)
             }
 
             if (!window.requestAnimationFrame)
                 window.requestAnimationFrame = window.webkitRequestAnimationFrame;
             rafID = window.requestAnimationFrame( updatePitch );
-}
+        }
 
 
     </script>
