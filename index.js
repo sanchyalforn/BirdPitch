@@ -182,7 +182,7 @@ function autoCorrelateFloat( buf, sampleRate ) {
 	}
 //	var best_frequency = sampleRate/best_offset;
 }
-*/
+
 
 var MIN_SAMPLES = 0;  // will be initialized when AudioContext is created.
 var GOOD_ENOUGH_CORRELATION = 0.9; // this is the "bar" for how close a correlation needs to be
