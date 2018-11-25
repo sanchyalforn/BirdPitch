@@ -22,9 +22,55 @@
         <h1> Welcome to XD </h1>  
         <div>
             <a href="/play" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Play!</a>
-            <a href="/help" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Help</a>
+            <button class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onclick="toggleLiveInput()">Activate Sound</button>
         </div>   
     </div>    
 
+    <script>
+
+        var analyser = null;
+        var mediaStreamSource = null;
+
+        function getUserMedia(dictionary, callback) {
+            try {
+                navigator.getUserMedia = 
+                    navigator.getUserMedia ||
+                    navigator.webkitGetUserMedia ||
+                    navigator.mozGetUserMedia;
+                navigator.getUserMedia(dictionary, callback, error);
+            } catch (e) {
+                alert('getUserMedia threw exception :' + e);
+            }
+        }
+
+        function toggleLiveInput() {
+            getUserMedia(
+                {
+                    "audio": {
+                        "mandatory": {
+                            "googEchoCancellation": "false",
+                            "googAutoGainControl": "false",
+                            "googNoiseSuppression": "false",
+                            "googHighpassFilter": "false"
+                        },
+                        "optional": []
+                    },
+                }, gotStream);
+        }
+
+        function gotStream(stream) {
+            // Create an AudioNode from the stream.
+            mediaStreamSource = audioContext.createMediaStreamSource(stream);
+
+            // Connect it to the destination.
+            analyser = audioContext.createAnalyser();
+            analyser.fftSize = 2048;
+            mediaStreamSource.connect( analyser );
+            updatePitch();
+        }
+
+
+    
+    </script>
 </body>
 </html>
