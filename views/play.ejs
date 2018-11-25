@@ -66,8 +66,6 @@
 
             // A standard Weltmeister map with two layers: "map" & "collision"
             this.load.tilemapImpact('map', 'static/impact3.json');
-
-            this.load.audio('bgAudio', ['static/song.mp3']);
         }
 
         function create ()
@@ -78,10 +76,6 @@
             map.createBlankDynamicLayer('background', tileset)
                 .fill(0)
                 .setAlpha(0.3);
-
-            this.sound.add('bgAudio').play({
-                loop: true
-            });
 
             var layer = map.createStaticLayer('map', tileset, 0, 0);
             this.impact.world.setCollisionMap('map');
@@ -120,8 +114,8 @@
                 else 
                     player.setVelocityY(-250)
         }
-        /*
-        function update (time, delta) {
+        
+        function update_unactual (time, delta) {
             
             player.setVelocityX(50);
 
@@ -147,7 +141,7 @@
 
             player.setVelocityX(200);
         }
-*/
+
 
         function resize() {
             var canvas = document.querySelector("canvas");
@@ -333,11 +327,11 @@
                 lastCorrelation = correlation;
             }
             if (best_correlation > 0.01) {
-                // console.log("f = " + sampleRate/best_offset + "Hz (rms: " + rms + " confidence: " + best_correlation + ")")
+                 console.log("f = " + sampleRate/best_offset + "Hz (rms: " + rms + " confidence: " + best_correlation + ")")
                 return sampleRate/best_offset;
             }
             return -1;
-        //	var best_frequency = sampleRate/best_offset;
+        	var best_frequency = sampleRate/best_offset;
         }
 
         function updatePitch( time ) {
@@ -352,7 +346,6 @@
             } else {
                 player.setVelocityX(200)
                 update(prevPitch,ac)
-                
             }
 
             if (!window.requestAnimationFrame)
