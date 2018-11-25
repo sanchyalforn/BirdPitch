@@ -6,71 +6,34 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <style>
         .center {
-            text-align: center;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
             width: 50%;
-            transform: translate(-50%, -50%);
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            padding: 20px;
+        }
+        .imagen {
+            display: block;
+            margin: auto;
+            margin-top: 50px;
+            padding: auto;
+            width: 40%;
+        }
+        .buttons {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body background="../static/welcome-image.jpg">
 
-    <div class="container">
-        <h1> Welcome to XD </h1>  
-        <div>
-            <a href="/play" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Play!</a>
-            <button class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onclick="toggleLiveInput()">Activate Sound</button>
+    <div class="container center">
+
+        <img src="../static/TransparentLogo.png" class="imagen">
+
+        <div class="container center ">
+            <a href="/play" class="btn btn-primary btn-lg active buttons" role="button" aria-pressed="true">High Frequency (Girls)</a>
+            <a href="/play2" class="btn btn-primary btn-lg active buttons" role="button" aria-pressed="true">Low Frequency (Boys)</a>
         </div>   
     </div>    
 
-    <script>
-
-        var analyser = null;
-        var mediaStreamSource = null;
-
-        function getUserMedia(dictionary, callback) {
-            try {
-                navigator.getUserMedia = 
-                    navigator.getUserMedia ||
-                    navigator.webkitGetUserMedia ||
-                    navigator.mozGetUserMedia;
-                navigator.getUserMedia(dictionary, callback, error);
-            } catch (e) {
-                alert('getUserMedia threw exception :' + e);
-            }
-        }
-
-        function toggleLiveInput() {
-            getUserMedia(
-                {
-                    "audio": {
-                        "mandatory": {
-                            "googEchoCancellation": "false",
-                            "googAutoGainControl": "false",
-                            "googNoiseSuppression": "false",
-                            "googHighpassFilter": "false"
-                        },
-                        "optional": []
-                    },
-                }, gotStream);
-        }
-
-        function gotStream(stream) {
-            // Create an AudioNode from the stream.
-            mediaStreamSource = audioContext.createMediaStreamSource(stream);
-
-            // Connect it to the destination.
-            analyser = audioContext.createAnalyser();
-            analyser.fftSize = 2048;
-            mediaStreamSource.connect( analyser );
-            updatePitch();
-        }
-
-
-    
-    </script>
 </body>
 </html>
