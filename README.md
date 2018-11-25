@@ -18,11 +18,11 @@ For built the project we use different technologies, for the backend we use node
 
 ### Accomplishments that we're proud of
 
-We are very proud about our project, at the start we didn't know how to develop a game and we think about doing a lot of things, but during the hackaton we realise that we were not able to do everything and we focus ourselves in an MVP witch was having the bird moving by sounds, integrate the song and the lyrics and having differents input parameters depending on your natural voice register.
+We are very proud about our project, at the start we didn't know how to develop a game and we thought about doing a lot of things, but during the hackaton we've realised that we were not able to do everything and we focus ourselves in an MVP which was: having the bird moving by sounds,t and generating the map by the frequency of the song (didn't implement that to be automatic yet).
 
 ### What we learned
 
-We learned a lot of things in this hack because we want to challenge ourselves, we learnt about how to use Phaser, and also to do voice recognition with node.js, this took us a lot of time because we found it really difficult.
+We've learned a lot of things in this hack because we wanted to challenge ourselves, we learnt about how to use Phaser, and also to do signal conversion with node.js, this took us a lot of time because we found it really difficult.
 
 
 ### What's next for BirdPitch
