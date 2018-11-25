@@ -1,6 +1,6 @@
 # BirdPitch
 
-Project built in LauzHack2018 by [sanchyy](https://github.com/sanchyy), [atsuky](https://github.com/atsuky) and [carlotacb](https://github.com/carlotacb)
+Project built in LauzHack2018 by [Carlota Catot](https://github.com/carlotacb), [Andreu Gallofre](https://github.com/atsuky) and [Victor Sánchez](https://github.com/sanchyy)
 
 ## Project description
 
