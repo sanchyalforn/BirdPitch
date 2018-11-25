@@ -34,6 +34,8 @@
             window.addEventListener("resize", resize, false);
         }
         
+        var points = 0;
+
         var config = {
             type: Phaser.WEBGL,
             width: 800,
@@ -55,6 +57,7 @@
         var game = new Phaser.Game(config);
         var player;
         var cursors;
+        var scoreText;
 
         function preload ()
         {
@@ -69,7 +72,7 @@
         {
             var map = this.make.tilemap({ key: 'map' });
             var tileset = map.addTilesetImage('media/tiles.png', 'tiles');
-
+            scoreText = this.add.text(150, 150, 'score: 0', { fontSize: '32px', fill: '#000' });
             map.createBlankDynamicLayer('background', tileset)
                 .fill(0)
                 .setAlpha(0.3);
@@ -88,7 +91,7 @@
 
             cursors = this.input.keyboard.createCursorKeys();
 
-            var help = this.add.text(16, 16, 'Arrow keys to move. Press "up" to jump.', {
+            var help = this.add.text(16, 16, 'Use your voice to go up or down, \n you have to match the pitch of the song! :)', {
                 fontSize: '18px',
                 fill: '#ffffff'
             });
@@ -97,8 +100,33 @@
 
         function update (time, delta)
         {
+<<<<<<< HEAD
             
             player.setVelocityX(50);
+=======
+
+            points = points + 1
+            
+            points += 10;
+            scoreText.setText('Score: ' + points);
+
+
+            var accel = player.body.standing ? player.body.accelGround : player.body.accelAir;
+
+            if (cursors.up.isDown)
+            {
+                player.setVelocityY(-200);
+            }
+            else if (cursors.down.isDown)
+            {
+                player.setVelocityY(200);
+            }
+            else{
+                player.setVelocityY(0);
+            }
+
+            player.setVelocityX(200);
+>>>>>>> 37d85e358aabfe55f76e7c8082e0011b49a05bfe
         }
 
 
