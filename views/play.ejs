@@ -66,6 +66,8 @@
 
             // A standard Weltmeister map with two layers: "map" & "collision"
             this.load.tilemapImpact('map', 'static/impact3.json');
+
+            this.load.audio('bgAudio', ['static/song.mp3']);
         }
 
         function create ()
@@ -76,6 +78,10 @@
             map.createBlankDynamicLayer('background', tileset)
                 .fill(0)
                 .setAlpha(0.3);
+
+            this.sound.add('bgAudio').play({
+                loop: true
+            });
 
             var layer = map.createStaticLayer('map', tileset, 0, 0);
             this.impact.world.setCollisionMap('map');
@@ -346,7 +352,7 @@
             } else {
                 player.setVelocityX(200)
                 update(prevPitch,ac)
-                prevPitch = ac;
+                
             }
 
             if (!window.requestAnimationFrame)
