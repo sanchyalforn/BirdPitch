@@ -18,15 +18,16 @@ For built the project we use different technologies, for the backend we use node
 
 ### Accomplishments that we're proud of
 
-
+We are very proud about our project, at the start we didn't know how to develop a game and we think about doing a lot of things, but during the hackaton we realise that we were not able to do everything and we focus ourselves in an MVP witch was having the bird moving by sounds, integrate the song and the lyrics and having differents input parameters depending on your natural voice register.
 
 ### What we learned
 
+We learned a lot of things in this hack because we want to challenge ourselves, we learnt about how to use Phaser, and also to do voice recognition with node.js, this took us a lot of time because we found it really difficult.
 
 
 ### What's next for BirdPitch
 
-For BirdPitch we talk about having a speech-to-text IBM API so you can have also putuation about how well (or bad) you have sing the song, because if we provide the letter you should sing all the words correct!!
+For BirdPitch we talk about having a speech-to-text IBM API so you can have also putuation about how well (or bad) you have sung the song, because if we provide the letter you should sing all the words correct!!
 
 Also a next step for BirdPitch may be have different skins (more birds!) and have more songs.
 
@@ -47,6 +48,6 @@ To run the game via NPM follow the next steps:
 2. Run the project:
 
 ```bash
-nodemon index
+    nodemon index
 ```
 The project will be launched in localhost:8080
