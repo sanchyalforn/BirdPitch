@@ -7,25 +7,23 @@
     <style>
         .center {
             text-align: center;
+            width: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            padding: 20px;
         }
     </style>
 </head>
 <body background="../static/welcome-image.jpg">
 
     <div class="container">
-        <div class="row">
-            <div class="col-sm">
-            </div>
-            <div class="col-sm center">
-                <h1> Welcome to XD </h1>  
-                <div>
-                    <a href="/play" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Play!</a>
-                    <a href="/help" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Help</a>
-                </div>   
-            </div>
-            <div class="col-sm">
-            </div>
-        </div>
+        <h1> Welcome to XD </h1>  
+        <div>
+            <a href="/play" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Play!</a>
+            <a href="/help" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Help</a>
+        </div>   
     </div>    
 
 </body>
