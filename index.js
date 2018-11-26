@@ -18,11 +18,11 @@ app.get('/', function (req, res) {
     res.render('welcome', {});
 });
 
-app.get('/play', function (req, res) {
+app.get('/high', function (req, res) {
     res.render('play', {});
 })
 
-app.get('/play2', function (req, res) {
+app.get('/low', function (req, res) {
     res.render('play2', {});
 })
 
